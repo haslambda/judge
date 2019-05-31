@@ -1,5 +1,3 @@
-import os
-
 from .base_executor import ScriptExecutor
 
 
@@ -8,11 +6,10 @@ class Executor(ScriptExecutor):
     ext = '.r'
     command = 'Rscript'
     command_paths = ['rscript']
-    test_program = """
-f <- file("stdin")
-open(f)
-while(length(line <- readLines(f,n=1)) > 0) {
-  write(line, stdout())
+    test_program = """\
+lines <- readLines("stdin")
+for(line in lines){
+    cat(line)
 }
 """
 
