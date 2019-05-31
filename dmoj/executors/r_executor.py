@@ -7,7 +7,12 @@ class RExecutor(ScriptExecutor):
     ext = '.r'
     name = 'R'
     address_grace = 65536
-    test_program = NotImplementedError()
+    test_program = """
+f <- file("stdin")
+open(f)
+while(length(line <- readLines(f,n=1)) > 0) {
+write(line, stdout())
+}"""
 
     def get_fs(self):
         fs = super(RExecutor, self).get_fs()
@@ -22,7 +27,7 @@ class RExecutor(ScriptExecutor):
         return fs
 
     def get_cmdline(self):
-        return [self.get_command(), '--vanilla', self._code]
+        return [self.get_command(), '--vanilla --slave', self._code]
 
     @classmethod
     def get_command(cls):
