@@ -5,7 +5,6 @@ class Executor(ScriptExecutor):
     name = 'R'
     ext = '.r'
     command = 'Rscript'
-    command_paths = ['rscript']
     test_program = """\
 print("Hello World")
 lines <- readLines("stdin")
