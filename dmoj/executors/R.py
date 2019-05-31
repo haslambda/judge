@@ -14,4 +14,4 @@ for(line in lines){
 """
 
     def get_cmdline(self):
-        return [self.get_command(), '--vanilla', '--slave', self._code]
+        return [self.get_command(), '--vanilla --slave', self._code]
