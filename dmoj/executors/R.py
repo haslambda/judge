@@ -7,7 +7,7 @@ class Executor(ScriptExecutor):
     command = 'Rscript'
     command_paths = ['rscript']
     test_program = """\
-print("Hello World
+print("Hello World")
 lines <- readLines("stdin")
 for(line in lines){
     cat(line)
