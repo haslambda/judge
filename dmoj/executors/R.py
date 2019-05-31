@@ -1,11 +1,20 @@
 import os
 
-from .r_executor import RExecutor
+from .base_executor import ScriptExecutor
 
 
-class Executor(RExecutor):
+class Executor(ScriptExecutor):
     name = 'R'
+    ext = '.r'
+    command = 'Rscript'
     command_paths = ['rscript']
+    test_program = """
+f <- file("stdin")
+open(f)
+while(length(line <- readLines(f,n=1)) > 0) {
+  write(line, stdout())
+}
+"""
 
-    def get_nproc(self):
-        return [-1, 1][os.name == 'nt']
+    def get_cmdline(self):
+        return [self.get_command(), '--vanilla', '--slave', self._code]
