@@ -127,6 +127,7 @@ class BaseExecutor(PlatformExecutorMixin):
 
             res = stdout.strip() == test_message and not stderr
             if output:
+                print("stdout : '%s'"%stdout)
                 # Cache the versions now, so that the handshake packet doesn't take ages to generate
                 cls.get_runtime_versions()
                 usage = '[%.3fs, %d KB]' % (proc.execution_time, proc.max_memory)
